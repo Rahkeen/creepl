@@ -1,5 +1,5 @@
 <?php
-	
+	echo("Hello World");
 	require "src/facebook.php";
 	
 	$app_id = "355103704654059";
@@ -9,8 +9,8 @@
     // creating our facebook instance
 
     $facebook = new Facebook(array(
-                    appId => $app_id
-                    secret => $app_secret));
+                    'appId' => $app_id
+                    'secret' => $app_secret));
 
     var_dump($facebook);
 
