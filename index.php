@@ -6,45 +6,9 @@
 	See: https://launchpad.net/bugs/1288690
 	-->
 
-  <div class="ui-widget">
-	  <label for="tags">Tags: </label>
-	  <input id="tags">
-  </div>
+ 
+
   
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  });
-  </script>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -54,13 +18,51 @@
   		<script src="bower_components/angular/angular.js"></script>
   		
 		<title>Creepl</title>
-
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+		  <link rel="stylesheet" href="/resources/demos/style.css">
+		  <script>
+		  $(function() {
+		    var availableTags = [
+		      "ActionScript",
+		      "AppleScript",
+		      "Asp",
+		      "BASIC",
+		      "C",
+		      "C++",
+		      "Clojure",
+		      "COBOL",
+		      "ColdFusion",
+		      "Erlang",
+		      "Fortran",
+		      "Groovy",
+		      "Haskell",
+		      "Java",
+		      "JavaScript",
+		      "Lisp",
+		      "Perl",
+		      "PHP",
+		      "Python",
+		      "Ruby",
+		      "Scala",
+		      "Scheme"
+		    ];
+		    $( "#tags" ).autocomplete({
+		      source: availableTags
+		    });
+		  });
+		  </script>
 	</head>
 	<body>
 		<div class="main_page">
 			<div class="page_header floating_element">
 				<span class="floating_element"> Welcome to Creepl </span>
 			</div>
+
+		 <div class="ui-widget">
+		  <label for="tags">Tags: </label>
+		  <input id="tags">
+  </div>
 	</body>
 </html>
 
