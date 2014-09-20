@@ -7,7 +7,11 @@
 	-->
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  		<script src="bower_components/angular/angular.js"></script>
+  		
 		<title>Creepl</title>
 
 	</head>
