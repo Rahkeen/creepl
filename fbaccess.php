@@ -9,7 +9,7 @@
     // creating our facebook instance
 
     $facebook = new Facebook(array(
-                    'appId' => $app_id
+                    'appId' => $app_id,
                     'secret' => $app_secret));
 
     var_dump($facebook);
@@ -18,7 +18,7 @@
     
     if($user) {
         try {
-            $user_profile = facebook->api('/me');
+            $user_profile = $facebook->api('/me');
             $fb_id = $user_profile['id'];
             $fb_name = $user_profile['name'];
 
@@ -53,7 +53,7 @@
     if($user) {
         header("Location: index.php");
     } else {
-        $login_url = facebook->getLoginUrl(array(
+        $login_url = $facebook->getLoginUrl(array(
                         'scope' => 'email, user_photos'));
         header('Location: '.$login_url);
     }
