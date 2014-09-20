@@ -53,7 +53,7 @@
 	</head>
 	<body>
 		<!--home start-->
-    
+    <a href="fbaccess.php">Login with Facebook</a>
     <div id="home">
     	<div class="headerLine">
 	<div id="menuF" class="default">
