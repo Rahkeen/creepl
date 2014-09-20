@@ -98,19 +98,19 @@
 		<div id="contact">
 			
 			<div class="container" ng-controller="ProfileController as profileCtrl">
-				<div id="profile">
+				<div>
 					<h1>{{profileCtrl.person.nameFirst}}</h1><br>
 					<h1>{{profileCtrl.person.nameLast}}</h1><br>
 					<h1>{{profileCtrl.person.email}}</h1>
 					<div id="profile reviews">
-						<div id="reviews" ng-repeat="reviews in profileCtrl.person.reviews">
-							
+						<div ng-repeat="review in profileCtrl.person.reviews">
+							<p>{{review.reviewer}}</p>
 						</div>
-						<form name="reviewForm" id="make review" ng-controller="ReviewController as reviewCtrl" 
-						ng-submit="reviewCtrl.addReview(profileCtrl.person)" ng-show="profileCtrl.person.canReview">
+						<form ng-controller="ReviewController as reviewCtrl" 
+						ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.person)" >
 							<blockquote>
-								<b>Starts: {{review.starts}}</b>
-								{{review.body}}
+								<b>Stars: {{review.starts}}</b><br>
+								{{review.body}}<br>
 								<cite>by: {{review.author}}</cite>
 							</blockquote>
 							

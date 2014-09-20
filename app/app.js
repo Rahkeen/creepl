@@ -2,16 +2,19 @@
 	var app = angular.module('creepl', []);
 	
 	app.controller('ProfileController', function() {
-		this.viewer = 'George Burdell';
+		this.viewer = 'Jason Libbey';
 		this.person = profile;
 		
 		this.canReview = function() {
+			console.log(this.person.friends.length);
 			for(var i=0; i<this.person.friends.length; i++) {
 				if (this.person.friends[i] === this.viewer) {
+					console.log("person is friends");
 					return true;
 				}
-				return false;
 			}
+			console.log("person is not friends");
+			return false;
 		};
 	});
 	
