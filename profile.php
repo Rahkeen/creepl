@@ -29,6 +29,7 @@
 		<script src="js/jquery.isotope.js" type="text/javascript"></script>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 		
 		<!--script type="text/javascript" src="js/jquery.nav.js"></script-->
 
@@ -96,17 +97,40 @@
 
 		<div id="contact">
 			
-			<div class="container" ng-controller="ProfileController as profileController">
+			<div class="container" ng-controller="ProfileController as profileCtrl">
 				<div id="profile">
-					<h1>{{profileController.person.nameFirst}}</h1><br>
-					<h1>{{profileController.person.nameLast}}</h1><br>
-					<h1>{{profileController.person.email}}</h1>
-					<ul id="profile reviews">
-						<div id="reviews" ng-repeat>
+					<h1>{{profileCtrl.person.nameFirst}}</h1><br>
+					<h1>{{profileCtrl.person.nameLast}}</h1><br>
+					<h1>{{profileCtrl.person.email}}</h1>
+					<div id="profile reviews">
+						<div id="reviews" ng-repeat="reviews in profileCtrl.person.reviews">
 							
 						</div>
-						<div id="make review" ng-show="profileController.person"><p>make a comment</p></div>
-					</ul>
+						<form name="reviewForm" id="make review" ng-controller="ReviewController as reviewCtrl" 
+						ng-submit="reviewCtrl.addReview(profileCtrl.person)" ng-show="profileCtrl.person.canReview">
+							<blockquote>
+								<b>Starts: {{review.starts}}</b>
+								{{review.body}}
+								<cite>by: {{review.author}}</cite>
+							</blockquote>
+							
+							<select ng-model="review.starts">
+								<option value="1">1 star</option>
+								<option value="2">2 star</option>
+								<option value="3">3 star</option>
+								<option value="4">4 star</option>
+								<option value="5">5 star</option>
+							</select>
+							
+							<textarea ng-model="review.body">
+								
+							</textarea>
+							
+							<label ng-model="review.author">by:</label>
+							
+							<input type="submit" value="Submit" />
+						</form>
+					</div>
 				</div>
 				<div id="friends">
 					
