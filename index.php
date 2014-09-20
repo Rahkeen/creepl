@@ -18,6 +18,7 @@
   		<script src="bower_components/angular/angular.js"></script>
   		
 		<title>Creepl</title>
+        <!-- Begin Search Logic -->
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		  <link rel="stylesheet" href="/resources/demos/style.css">
@@ -52,6 +53,7 @@
 		    });
 		  });
 		  </script>
+        <!-- End Search Logic -->
 	</head>
 	<body>
 		<div class="main_page">
@@ -62,7 +64,7 @@
 		 <div class="ui-widget">
 		  <label for="tags">Tags: </label>
 		  <input id="tags">
-  </div>
+        </div>
 	</body>
 </html>
 
