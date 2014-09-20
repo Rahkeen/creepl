@@ -1,10 +1,9 @@
 <?php
 
 //Get Variables
-$user = $_GET['user'];
-
 $query = $_GET['query'];
 
+    
 //Database Init
 // Create connection
 $dbcon=mysqli_connect("localhost","root","root","creepl");
@@ -15,13 +14,17 @@ if (mysqli_connect_errno()) {
 }
 
 //Databse Query
-$result = mysqli_query($con,"SELECT FNAME, LNAME FROM users");
+$sql_query = sprintf("SELECT FNAME, LNAME FROM user WHERE FNAME LIKE '%%%s%%' OR LNAME LIKE '%%%s%%';", $query, $query);
+
+$result = mysqli_query($dbcon,$sql_query);
+
+$response  = array();
 
 while($row = mysqli_fetch_array($result)) {
-  echo $row;
-  echo "<br>";
+  array_push($response, $row);
 }
 
-mysqli_close($con);
+mysqli_close($dbcon);
 
+echo json_encode($response);
 ?>

@@ -16,44 +16,7 @@
   		
   		
 		<title>Creepl</title>
-<<<<<<< HEAD
-        <!-- Begin Search Logic -->
-		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-		  <link rel="stylesheet" href="/resources/demos/style.css">
-		  <script>
-		  $(function() {
-		    var availableTags = [
-		      "ActionScript",
-		      "AppleScript",
-		      "Asp",
-		      "BASIC",
-		      "C",
-		      "C++",
-		      "Clojure",
-		      "COBOL",
-		      "ColdFusion",
-		      "Erlang",
-		      "Fortran",
-		      "Groovy",
-		      "Haskell",
-		      "Java",
-		      "JavaScript",
-		      "Lisp",
-		      "Perl",
-		      "PHP",
-		      "Python",
-		      "Ruby",
-		      "Scala",
-		      "Scheme"
-		    ];
-		    $( "#tags" ).autocomplete({
-		      source: availableTags
-		    });
-		  });
-		  </script>
-        <!-- End Search Logic -->
-=======
+
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -92,7 +55,7 @@
 				});
 			});
 		</script>
->>>>>>> 6b04853ad337cf9190c03a1ccee19a3fdd5317e2
+
 	</head>
 	<body>
 		<!--home start-->
@@ -526,12 +489,6 @@
 				b=rr[0].replace(/(\d{1,3}(?=(\d{3})+(?:\.\d|\b)))/g,"\$1"+separator);
 				r=(rr[1]?b+'.'+rr[1]:b);
 
-<<<<<<< HEAD
-		 <div class="ui-widget">
-		  <label for="tags">Tags: </label>
-		  <input id="tags">
-        </div>
-=======
 				return r;
 }
 				
@@ -627,8 +584,6 @@
 			
 		});
 	</script>
-	</body>
->>>>>>> 6b04853ad337cf9190c03a1ccee19a3fdd5317e2
 	</body>
 </html>
 
