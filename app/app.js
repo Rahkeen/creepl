@@ -2,30 +2,46 @@
 	var app = angular.module('creepl', []);
 	
 	app.controller('ProfileController', function() {
-		this.viewer = 'Jason Libbey';
+		this.viewer = '902859678';
 		this.person = profile;
 		
 		this.canReview = function() {
-			console.log(this.person.friends.length);
+			
+			// ensure the profile is not of the viewer
+			if (this.viewer === this.person.FacebookID) {
+				return false;
+			}
+			
+			// ensure the profile is friends with the viewer
 			for(var i=0; i<this.person.friends.length; i++) {
+				
 				if (this.person.friends[i] === this.viewer) {
-					console.log("person is friends");
+					
+					// ensure the viewer has not already written a review for this profile
+					for (var j=0; j<this.person.reviews.length; j++) {
+						
+						if (this.person.reviews[j].reviewer === this.viewer) {
+							return false;
+						}
+					}
+					
+					// the viewer is friends and has not written a review for this profile
 					return true;
 				}
 			}
-			console.log("person is not friends");
 			return false;
 		};
 	});
 	
 	var profile = {
-		nameFirst: 'George',
-		nameLast: 'Burdell',
-		email: 'gburdell3@gatech.edu',
-		friends: ['Jason Libbey'],
+		FacebookID: '000000000',
+		nameFirst: 'Jason',
+		nameLast: 'Libbey',
+		email: 'jlibbey3@gatech.edu',
+		friends: ['902810754', '902825262', '902859678'],
 		reviews: [
 			{
-				reviewer: 'some string ID',
+				reviewer: '902825262',
 				rating: '1 to 5 stars',
 				body: 'omg becky look at her butt',
 				upvotes: 'integer',

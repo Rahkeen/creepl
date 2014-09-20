@@ -104,12 +104,17 @@
 					<h1>{{profileCtrl.person.email}}</h1>
 					<div id="profile reviews">
 						<div ng-repeat="review in profileCtrl.person.reviews">
-							<p>{{review.reviewer}}</p>
+							<p>{{review.reviewer}}</p><br>
+							<p>{{review.rating}}</p><br>
+							<p>{{review.body}}</p><br>
+							<p>{{review.upvotes}}</p><br>
+							<p>{{review.downvotes}}</p><br>
+							<p>{{review.funny}}</p><br>
 						</div>
 						<form ng-controller="ReviewController as reviewCtrl" 
 						ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.person)" >
 							<blockquote>
-								<b>Stars: {{review.starts}}</b><br>
+								<b>Stars: {{review.stars}}</b><br>
 								{{review.body}}<br>
 								<cite>by: {{review.author}}</cite>
 							</blockquote>
