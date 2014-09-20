@@ -6,7 +6,12 @@
 	See: https://launchpad.net/bugs/1288690
 	-->
 
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <div class="ui-widget">
+	  <label for="tags">Tags: </label>
+	  <input id="tags">
+  </div>
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
@@ -40,7 +45,7 @@
     });
   });
   </script>
-  
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		
