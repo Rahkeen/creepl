@@ -12,6 +12,8 @@
                     appId => $app_id
                     secret => $app_secret));
 
+    var_dump($facebook);
+
     $user = $facebook->getUser();
     
     if($user) {
