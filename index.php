@@ -1,9 +1,14 @@
+<?php session_start ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		
-  		
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  		<script src="bower_components/angular/angular.js"></script>
   		
 		<title>Creepl</title>
 
@@ -45,7 +50,6 @@
 				});
 			});
 		</script>
-
 	</head>
 	<body>
 		<!--home start-->
@@ -473,6 +477,8 @@
 				rr=Number(r).toFixed(decimal).toString().split('.');
 				b=rr[0].replace(/(\d{1,3}(?=(\d{3})+(?:\.\d|\b)))/g,"\$1"+separator);
 				r=(rr[1]?b+'.'+rr[1]:b);
+                    
+		
 
 				return r;
 }
@@ -500,6 +506,10 @@
 				}, 500);
 			});
 	</script>
+<div class="main_page">
+			<div class="page_header floating_element">
+				<span class="floating_element"> Welcome to Creepl </span>
+			</div>
 	<script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery('#menu').slicknav();
@@ -569,6 +579,7 @@
 			
 		});
 	</script>
+
 	</body>
 </html>
 
