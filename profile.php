@@ -48,11 +48,15 @@
 	</head>
 	<body ng-controller="ProfileController as profileCtrl">
 		<script>
-			var LOGGEDIN = '<?php $_GET[]; ?>';
+			var LOGGEDIN = {
+				name: '<?php $_GET[name]; ?>',
+				fbid: '<?php $_GET[fbid]; ?>',
+				photo: '<?php $_GET[photo]; ?>'
+			};
 		</script>
+		{{profileCtrl.switchProfile()}}
 		
-		
-		<button ng-click="profileCtrl.switchUser('000X11')"></button>
+		<button ng-click="profileCtrl.switchProfile('000X11')"></button>
 		<!--home start-->
 		<div id="home">
 			<div class="headerLine">

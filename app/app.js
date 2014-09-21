@@ -50,7 +50,7 @@
 		
 		
 		
-		this.switchUser = function(fbid) {
+		this.switchProfile = function(fbid) {
 			console.log('hi');
 			//this.profile = loadUser(fbid);
 				
