@@ -34,9 +34,9 @@
 	<body ng-controller="ProfileController as profileCtrl">
 		<script>
 			var LOGGEDIN = {
-				'name': '<?php $_GET['name']; ?>',
+				'name': '<?php echo $_GET['name']; ?>',
 				'fbid': '10204721707468121',
-				'photo': '<?php $_GET['photo']; ?>'
+				'photo': '<?php echo $_GET['photo']; ?>'
 			};
 			console.log('h');
 			console.log(LOGGEDIN.name);
