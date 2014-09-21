@@ -39,6 +39,7 @@
 				'photo': '<?php $_GET['photo']; ?>'
 			};
 			console.log('h');
+			console.log(LOGGEDIN.name);
 			console.log(LOGGEDIN.fbid);
 		</script>
 		
