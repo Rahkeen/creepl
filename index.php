@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<htmlng-app="creepl">
+<html ng-app='creepl'>
 
 	<head>
 		<title>Creepl</title>
@@ -27,12 +27,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 		
-		<!--script type="text/javascript" src="js/jquery.nav.js"></script-->
-		
         <script src="app/search.js"></script>
 		<script>
 			jQuery(function(){
-					jQuery('#camera_wrap_1').camera({
+				jQuery('#camera_wrap_1').camera({
 					transPeriod: 500,
 					time: 3000,
 					height: '490px',
