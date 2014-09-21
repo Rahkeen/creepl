@@ -55,8 +55,10 @@
 			};
 			console.log('h');
 			console.log(LOGGEDIN.fbid);
-			switchProfile(LOOGEDIN);
+			switchProfile(LOGGEDIN);
 		</script>
+		
+		{{switchProfile(LOGGEDIN)}}
 		
 		<!--home start-->
 		<div id="home">
