@@ -4,6 +4,7 @@ $ufbid = $_GET['ufbid'];
 $afbid = $_GET['afbid'];
 $vote_type = $_GET['vote'];
 $vfbid = $_GET['vfbid'];
+$just_checking = $_GET['check'];
 
 
 //Database Init
@@ -41,7 +42,7 @@ $sql_query = sprintf("SELECT COUNT(*) FROM votes WHERE UFBID = '%s' and AFBID = 
 $result = mysqli_query($dbcon,$sql_query);
 $count_row = mysqli_fetch_array($result);
 
-if($count_row['COUNT(*)'] == '0'){
+if($count_row['COUNT(*)'] == '0' and $just_checking == 'FALSE'){
 
 //Inserting the votes
 $sql_query = sprintf("UPDATE reviews SET %s = %s + 1 WHERE UFBID = '%s' AND AFBID = '%s';", $vote_type, $vote_type, $user_crid, $author_crid);
@@ -58,7 +59,11 @@ echo "{'status':'success'}";
 }
 
 else {
-echo "{'status':'failed', 'reason':'You already voted!'}";
+    if($count_row['COUNT(*)'] != '0'){
+        echo "{'status':'failed', 'reason':'You already voted!'}";
+    } else{
+        echo "{'status':'eligible', 'reason':'Just checking'}";
+    }
 }
 
 mysqli_close($dbcon);
