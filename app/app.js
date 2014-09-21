@@ -53,6 +53,7 @@
 		
 		this.switchProfile = function(LOGGEDINUSER) {
 			
+			console.log(LOGGEDINUSER.fbid);
 			this.profile.prim_user.fbid = LOGGEDINUSER.fbid;
 		};
 		
