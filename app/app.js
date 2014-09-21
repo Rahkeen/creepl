@@ -8,7 +8,7 @@
 		// get from facebook login
 		this.viewer = '000X11';
 		
-		this.profile;
+		this.profile = {};
 		
 		this.friends = [
 			{
