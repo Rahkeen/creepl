@@ -50,9 +50,10 @@
 		
 		
 		
-		this.switchProfile = function(fbid) {
+		
+		this.switchProfile = function(LOGGEDINUSER) {
 			
-			this.profile = loadUser(fbid);
+			this.profile.prim_user.fbid = LOGGEDINUSER.fbid;
 		};
 		
 		this.canReview = function() {
