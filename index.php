@@ -130,7 +130,7 @@
 	<div id="status"></div>
 		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
 	<div>
-		<form action="index.php" method="get">
+		<form action="profile.php" method="get">
 			<div>
 				Name: <input type="text" name="name" value=""><br>
 				ID: <input type="text" name="fbid" value=""><br>
@@ -139,6 +139,7 @@
 			<input type="Submit">
 		</form> 
 	</div>
+
     <div id="home">
     	<div class="headerLine">
 	<div id="menuF" class="default">
