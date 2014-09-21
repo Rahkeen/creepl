@@ -90,10 +90,18 @@
 		function getInfo() {
 			console.log('Getting some info for you...');
 			FB.api('/me', function(response) {
-				var str = "Name: " +response.name+ "<br>";
-				str += "Id: " +response.id;
-				document.getElementById('status').innerHTML = str;
+
+				var name = response.name;
+				var id = response.id;
+				console.log($("input")[0]);
+				$("input[name='name']").val(name);
+				$("input[name='fbid']").val(id);
 			});
+
+			FB.api('/me/picture?type=normal', function(response) {
+				var pic = response.data.url;
+				$("input[name='photo']").val(pic);
+			})
 		}
 
 		// function getPhoto() {
@@ -120,6 +128,16 @@
 	
 	<div id="status"></div>
 		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
+	<div>
+		<form action="profile.php" method="get">
+			<div style="display: none">
+				Name: <input type="text" name="name" value=""><br>
+				ID: <input type="text" name="fbid" value=""><br>
+				Pic: <input type="text" name="photo" value="">
+			</div>
+			<input type="Submit">
+		</form>
+	</div>
     <div id="home">
     	<div class="headerLine">
 	<div id="menuF" class="default">
