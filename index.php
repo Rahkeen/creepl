@@ -10,7 +10,6 @@
   		
 		<title>Creepl</title>
 
-		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
@@ -131,8 +130,8 @@
 	<div id="status"></div>
 		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
 	<div>
-		<form action="profile.php" method="get">
-			<div style="display: none">
+		<form action="index.php" method="get">
+			<div>
 				Name: <input type="text" name="name" value=""><br>
 				ID: <input type="text" name="fbid" value=""><br>
 				Pic: <input type="text" name="photo" value="">
