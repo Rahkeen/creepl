@@ -8,7 +8,7 @@
 		// get from facebook login
 		this.viewer = '000X11';
 		
-		this.profile = dummyProfile;
+		this.profile;
 		
 		this.friends = [
 			{
@@ -50,38 +50,41 @@
 		
 		
 		
-		this.switchUser = function(fbid) {
-			console.log('hi');
-			//this.profile = loadUser(fbid);
-				
-			this.profile = dummyProfile2;
+		
+		this.switchProfile = function(LOGGEDINUSER) {
+			
+			console.log(LOGGEDINUSER.fbid);
+			this.profile.prim_user.fbid = LOGGEDINUSER.fbid;
 		};
 		
 		this.canReview = function() {
 			
-			// ensure the profile is not of the viewer
-			if (this.viewer === this.profile.prim_user.fbid) {
-				return false;
-			}
-			
-			// ensure the profile is friends with the viewer
-			for(var i=0; i<this.friends.length; i++) {
+			if (this.profile) {
+				// ensure the profile is not of the viewer
+				if (this.viewer === this.profile.prim_user.fbid) {
+					return false;
+				}
 				
-				if (this.friends[i].fbid === this.viewer) {
+				// ensure the profile is friends with the viewer
+				for(var i=0; i<this.friends.length; i++) {
 					
-					// ensure the viewer has not already written a review for this profile
-					for (var j=0; j<this.profile.reviews.length; j++) {
+					if (this.friends[i].fbid === this.viewer) {
 						
-						if (this.profile.reviews[j].afbid === this.viewer) {
-							this.review = this.profile.reviews[j];
-							return false;
+						// ensure the viewer has not already written a review for this profile
+						for (var j=0; j<this.profile.reviews.length; j++) {
+							
+							if (this.profile.reviews[j].afbid === this.viewer) {
+								this.review = this.profile.reviews[j];
+								return false;
+							}
 						}
+						
+						// the viewer is friends and has not written a review for this profile
+						return true;
 					}
-					
-					// the viewer is friends and has not written a review for this profile
-					return true;
 				}
 			}
+			
 			return false;
 		};
 	});
@@ -125,32 +128,5 @@
 			});
 		};
 	});
-	
-	var dummyProfile = {
-		prim_user: {
-			fbid: '902810754',
-			fname: 'Jason',
-			lname: 'Libbey'
-		},
-		reviews: [
-			{
-				afbid: '902810754',
-				review: 'AYE BB WANT SUM FUK',
-				upvotes: 2,
-				downvotes: 4,
-				rating: 5
-			}
-		]
-	};
-	
-	var dummyProfile2 = {
-		prim_user: {
-			fbid: '902810754',
-			fname: 'George',
-			lname: 'Burdell'
-		},
-		reviews: [
-		]
-	};
 	
 })();
