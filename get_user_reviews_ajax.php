@@ -36,13 +36,26 @@ while($row = mysqli_fetch_array($result)) {
   $result2 = mysqli_query($dbcon,$sql_q2);
   $row2 = mysqli_fetch_array($result2);
   $row['AFBID'] = $row2['FBID'];
+  
   array_push($response['reviews'], $row);
 }
 
 function cmp($a,$b){
     return (($a['UPVOTES']-$a['DOWNVOTES'])-($b['UPVOTES']-$b['DOWNVOTES']));  
 }
-usort($response,"cmp");
+
+$reviews = $response['reviews'];
+
+$sum = 0;
+
+foreach($reviews as $rev){
+    $sum += $rev['RATING'];
+}
+
+$avg = $sum/sizeof($reviews);
+
+usort($reviews,"cmp");
+$response['prim_user']['RATING'] = $avg;
 echo json_encode($response);
 mysqli_close($dbcon);
 
