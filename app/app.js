@@ -10,12 +10,16 @@
 		
 		this.profile = dummyProfile;
 		
-		this.friends = ['nobody'];
+		this.friends = [
+			{
+				fbid: '000X11'
+			}
+		];
 		
 		this.review;
 		
 		// initialize to viewer
-		this.loadProfile = function() {
+		function loadProfile() {
 			
 			var profile = loadUser(this.viewer);
  			
@@ -82,6 +86,13 @@
 				rating: review.rating
 			});
 			
+			promise.success(function(data) {
+				window.location.reload();
+			});
+			
+			promise.fail(function(data) {
+				console.log("fail");
+			});
 		};
 	});
 	
