@@ -47,7 +47,7 @@
 			populateList();
 			$('#invis').append(lihtml);
 		</script>
-		<div id='invis'></div>
+		<div class='invis' id='invis'></div>
 		
 		<!--profile start-->
 
