@@ -1,7 +1,3 @@
-<?php 
-	include 'fbaccess.php';
-?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app>
 
@@ -41,6 +37,7 @@
 		<script src="bower_components/angular/angular.js"></script>
 		<!--script type="text/javascript" src="js/jquery.nav.js"></script-->
         <script src="app/search.js"></script>
+        <script src="//connect.facebook.net/en_US/all.js"></script>
 
 		<script>
 			jQuery(function(){
@@ -61,6 +58,52 @@
 	</head>
 	<body>
 		<!--home start-->
+	<script>
+
+		function Login() {
+			FB.login(function(response) {
+				if(response.authResponse) {
+					getInfo();
+				} else {
+					console.log('You done fukd up')
+				}
+			}, {scope : 'email, user_photos, user_friends'})
+		}
+
+		window.fbAsyncInit = function() {
+		FB.init({
+			appId : '355103704654059',
+			cookie : true,
+			xfbml : true,
+			version : 'v2.1'
+		});
+		};
+		
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+
+		function getInfo() {
+			console.log('Getting some info for you...');
+			FB.api('/me', function(response) {
+				var str = "Name: " +response.name+ "<br>";
+				str += "Id: " +response.id;
+				document.getElementById('status').innerHTML = str;
+			});
+		}
+
+		// function getPhoto() {
+		// 	FB.api('/me/picture?type=normal', function(response) {
+		// 		var str = "<br>"
+		// 	})
+		// }
+		
+	</script>
+
         <script>
             $(document).ready(function(){
                 $("#searchPattern").autocomplete({
@@ -74,6 +117,9 @@
                 });
             });
         </script>
+	
+	<div id="status"></div>
+		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
     <div id="home">
     	<div class="headerLine">
 	<div id="menuF" class="default">
