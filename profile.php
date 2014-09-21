@@ -49,13 +49,13 @@
 	<body ng-controller="ProfileController as profileCtrl">
 		<script>
 			var LOGGEDIN = {
-				name: '<?php $_GET['name']; ?>',
-				fbid: '10204721707468121',
-				photo: '<?php $_GET['photo']; ?>'
+				'name': '<?php $_GET['name']; ?>',
+				'fbid': '10204721707468121',
+				'photo': '<?php $_GET['photo']; ?>'
 			};
 			console.log('h');
 			console.log(LOGGEDIN.fbid);
-			
+			switchProfile(LOOGEDIN);
 		</script>
 		
 		<!--home start-->
