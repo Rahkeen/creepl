@@ -54,7 +54,7 @@
         $response = $request->execute();
         $user_info = $response->getGraphObject(GraphUser::className());
 
-        echo 'Welcome ' . $graph_object->getName();
+        echo 'Welcome ' . $user_info->getName();
     } else {
         echo '<a href = ' . $helper->getLoginUrl() . '>Login to Facebook</a>';
     }
