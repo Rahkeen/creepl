@@ -41,6 +41,8 @@
 			console.log('h');
 			console.log(LOGGEDIN.name);
 			console.log(LOGGEDIN.fbid);
+			
+			profileCtrl.switchProfile(LOGGEDIN);
 		</script>
 		
 		<!--profile start-->
