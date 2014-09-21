@@ -22,15 +22,16 @@
     use Facebook\GraphUser;
     use Facebook\GraphSessionInfo;
 	
-	$app_id = "355103704654059";
-	$app_secret = "d5583237092ef1fb6f5167494fb5cd39";
-	$site_url = "http://ec2-54-68-127-215.us-west-2.compute.amazonaws.com/";
+	$app_id = '355103704654059';
+	$app_secret = 'd5583237092ef1fb6f5167494fb5cd39';
+    // $site_url = 'http://localhost:8080/creepl/';
+	$site_url = 'http://ec2-54-68-127-215.us-west-2.compute.amazonaws.com/';
 
     // creating our facebook instance
     session_start();
     FacebookSession::setDefaultApplication($app_id, $app_secret);
 
-    $helper = new FacebookRedirectLoginHelper($site_url);
+    $helper = new FacebookRedirectLoginHelper($site_url . 'fbaccess.php');
     $fblogin_url = $helper->getLoginUrl(array('user_photos'));
 
 
