@@ -33,6 +33,7 @@
     $helper = new FacebookRedirectLoginHelper($site_url);
     $fblogin_url = $helper->getLoginUrl(array('user_photos'));
 
+
     try {
         $session = $helper->getSessionFromRedirect();
     } catch(FacebookRequestException $e) {

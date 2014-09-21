@@ -25,8 +25,7 @@ while($row = mysqli_fetch_array($result)) {
 }
 
 //Getting the reviews
-$sql_query = sprintf("SELECT * FROM (SELECT * FROM reviews INNER JOIN user WHERE revies.CRID = user.CRID ;) WHERE user.CRID = %i", $user_crid);
-
+$sql_query = sprintf("SELECT * FROM (SELECT * FROM reviews INNER JOIN user ON reviews.UCRID = user.CRID) tab  WHERE CRID = %d;", $user_crid);
 $result = mysqli_query($dbcon,$sql_query);
 
 $response['reviews'] = array();
@@ -37,4 +36,5 @@ while($row = mysqli_fetch_array($result)) {
 
 echo json_encode($response);
 mysqli_close($dbcon);
+
 ?>
