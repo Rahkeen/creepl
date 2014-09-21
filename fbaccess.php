@@ -1,61 +1,54 @@
 <?php
-	echo("Hello World");
-	require "src/facebook.php";
+
+    require_once("Facebook/FacebookSession.php");
+    require_once("Facebook/FacebookRedirectLoginHelper.php");
+    require_once("Facebook/FacebookRequest.php");
+    require_once("Facebook/FacebookResponse.php");
+    require_once("Facebook/FacebookSDKException.php");
+    require_once("Facebook/FacebookRequestException.php");
+    require_once("Facebook/FacebookAuthorizationException.php");
+    require_once("Facebook/GraphObject.php");
+    require_once("Facebook/GraphUser.php");
+    require_once("Facebook/GraphSessionInfo.php");
+
+    use Facebook\FacebookSession;
+    use Facebook\FacebookRedirectLoginHelper;
+    use Facebook\FacebookRequest;
+    use Facebook\FacebookResponse;
+    use Facebook\FacebookSDKException;
+    use Facebook\FacebookRequestException;
+    use Facebook\FacebookAuthorizationException;
+    use Facebook\GraphObject;
+    use Facebook\GraphUser;
+    use Facebook\GraphSessionInfo;
 	
 	$app_id = "355103704654059";
 	$app_secret = "d5583237092ef1fb6f5167494fb5cd39";
 	$site_url = "http://ec2-54-68-127-215.us-west-2.compute.amazonaws.com/";
 
     // creating our facebook instance
+    session_start();
+    FacebookSession::setDefaultApplication($app_id, $app_secret);
 
-    $facebook = new Facebook(array(
-                    'appId' => $app_id
-                    'secret' => $app_secret));
-
-    var_dump($facebook);
-
-    $user = $facebook->getUser();
-    
-    if($user) {
-        try {
-            $user_profile = facebook->api('/me');
-            $fb_id = $user_profile['id'];
-            $fb_name = $user_profile['name'];
-
-            // Session Variables 
-
-            $_SESSION['FBID'] = $fb_id;
-            $_SESSION['NAME'] = $fb_name;
-
-        } catch(FacebookApiException $e) {
-            error_log($e);
-            $user = NULL;
-        }
-    }
-
-
-   /* if($user) {
-        
-        $requests = array(
-		array('method' => 'GET', 'relative_url' => '/'.$user),
-		array('method' => 'GET', 'relative_url' => '/'.$user.'/friends'),
-		array('method' => 'GET', 'relative_url' => '/'.$user.'/photos?limit=6'),
-		);
-    }
+    $helper = new FacebookRedirectLoginHelper($site_url);
+    $fblogin_url = $helper->getLoginUrl(array('user_photos'));
 
     try {
-        $batch_response = facebook->api('?batch='.json_encode($requests), 'POST');
-    } catch (Exception $e) {
+        $session = $helper->getSessionFromRedirect();
+    } catch(FacebookRequestException $e) {
         error_log($e);
-    } */
+    } catch(Exception $e) {
+        error_log($e);
+    }
 
+    if(isset($session)) {
+        $request = new FacebookRequest($session, 'GET', '/me');
+        $response = $request->execute();
+        $graph_object = $response->getGraphObject();
 
-    if($user) {
-        header("Location: index.php");
+        var_dump($graph_object);
     } else {
-        $login_url = facebook->getLoginUrl(array(
-                        'scope' => 'email, user_photos'));
-        header('Location: '.$login_url);
+        header('Location: ' . $fblogin_url);
     }
      
 ?>
