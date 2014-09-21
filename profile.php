@@ -55,7 +55,6 @@
 			};
 			console.log(LOGGEDIN.fbid);
 		</script>
-		{{profileCtrl.switchProfile(LOGGEDIN)}}
 		
 		<button ng-click="profileCtrl.switchProfile('000X11')"></button>
 		<!--home start-->
