@@ -1,6 +1,6 @@
 <?php
 
-$fbid = $_GET['fbid'];
+$fbid = $_GET['ufbid'];
 
 //Database Init
 // Create connection
@@ -31,7 +31,12 @@ $result = mysqli_query($dbcon,$sql_query);
 $response['reviews'] = array();
 
 while($row = mysqli_fetch_array($result)) {
-  array_push($response['reviews'],$row);
+    
+  $sql_q2 = sprintf("SELECT * FROM user WHERE CRID = %d;", $row['AUTHOR_CRID']);
+  $result2 = mysqli_query($dbcon,$sql_q2);
+  $row2 = mysqli_fetch_array($result2);
+  $row['AFBID'] = $row2['FBID'];
+  array_push($response['reviews'], $row);
 }
 
 echo json_encode($response);
