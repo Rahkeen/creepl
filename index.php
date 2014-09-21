@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="creepl">
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -57,61 +57,6 @@
 	</head>
 	<body>
 		<!--home start-->
-	<script>
-
-		function Login() {
-			FB.login(function(response) {
-				if(response.authResponse) {
-					getInfo();
-				} else {
-					console.log('You done fukd up')
-				}
-			}, {scope : 'email, user_photos, user_friends'})
-		}
-
-		window.fbAsyncInit = function() {
-		FB.init({
-			appId : '355103704654059',
-			cookie : true,
-			xfbml : true,
-			version : 'v2.1'
-		});
-		};
-		
-		(function(d){
-			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement('script'); js.id = id; js.async = true;
-			js.src = "//connect.facebook.net/en_US/all.js";
-			ref.parentNode.insertBefore(js, ref);
-		}(document));
-
-		function getInfo() {
-			console.log('Getting some info for you...');
-			FB.api('/me', function(response) {
-
-				var name = response.name;
-				var id = response.id;
-				console.log($("input")[0]);
-				$("input[name='name']").val(name);
-				$("input[name='fbid']").val(id);
-			});
-
-			FB.api('/me/picture?type=normal', function(response) {
-				var pic = response.data.url;
-				$("input[name='photo']").val(pic);
-			});
-
-			console.log($("input[name='name']").val());
-		}
-
-		// function getPhoto() {
-		// 	FB.api('/me/picture?type=normal', function(response) {
-		// 		var str = "<br>"
-		// 	})
-		// }
-		
-	</script>
 
         <script>
             $(document).ready(function(){
@@ -126,9 +71,7 @@
                 });
             });
         </script>
-	
-	<div id="status"></div>
-		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
+        
 	<div>
 		<form action="profile.php" method="get">
 			<div>

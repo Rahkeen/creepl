@@ -3,9 +3,7 @@
 	
 	var url = '/get_user_reviews_ajax.php';
 		
-	app.controller('ProfileController', function($scope) {
-		
-		$scope.controller = this;
+	app.controller('ProfileController', function() {
 		
 		// get from facebook login
 		this.viewer = '000X11';
@@ -51,7 +49,51 @@
 		};
 		
 		
+		function Login() {
+			FB.login(function(response) {
+				if(response.authResponse) {
+					getInfo();
+				} else {
+					console.log('You done fukd up');
+				}
+			}, {scope : 'email, user_photos, user_friends'});
+		};
 		
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '355103704654059',
+				cookie : true,
+				xfbml : true,
+				version : 'v2.1'
+			});
+		};
+		
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+
+		function getInfo() {
+			console.log('Getting some info for you...');
+			FB.api('/me', function(response) {
+
+				var name = response.name;
+				var id = response.id;
+				console.log($("input")[0]);
+				$("input[name='name']").val(name);
+				$("input[name='fbid']").val(id);
+			});
+
+			FB.api('/me/picture?type=normal', function(response) {
+				var pic = response.data.url;
+				$("input[name='photo']").val(pic);
+			});
+
+			console.log($("input[name='name']").val());
+		}
 		
 		this.switchProfile = function(LOGGEDINUSER) {
 			

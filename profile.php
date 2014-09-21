@@ -42,20 +42,15 @@
 			console.log(LOGGEDIN.name);
 			console.log(LOGGEDIN.fbid);
 			
-			console.log(angular.element((document).body).controller());
+			var controller = angular.element(document.body).scope().profileCtrl;
 			
-			var lihtml;
-			function populateList() {
-				lihtml = '<div>{name: "<?php echo $_GET['name']; ?>", fbid: "<?php echo $_GET['fbid']; ?>", photo: "<?php echo $_GET['photo']; ?>"}</div>';
-			}
-			populateList();
-			$('#invis').append(lihtml);
 		</script>
-		<div class='invis' id='invis'></div>
 		
 		<!--profile start-->
 
 		<div id="contact" ng-mouseenter="profileCtrl.switchProfile(LOGGEDIN)">
+			
+			<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
 			
 			<div class="container">
 				<div>
