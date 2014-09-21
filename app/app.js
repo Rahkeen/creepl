@@ -8,49 +8,47 @@
 		// get from facebook login
 		this.viewer = '000X11';
 		
-		this.profile;
+		this.profile = dummyData;
 		
-		this.friends;
+		this.friends = ['nobody'];
 		
 		// initialize to viewer
-		this.init = function() {
+		this.loadProfile = function(FBID) {
 			
-			console.log("test");
+			var profile;
 			
 			var promise = $.get(url, {
-    			UFID: this.viewer
- 			})
- 			.done(function() {
- 				console.log("success");
- 			})
- 			.fail(function() {
- 				console.log("fail");
- 			})
- 			.always(function() {
- 				console.log("always");
+    			UFID: FBID
  			});
- 			//.success(handleSuccess).error(handleFailure);
  			
+ 			profile = promise.success(function(data) {
+ 				return data;
+ 			});
+ 			
+ 			promise.fail(function(data) {
+ 				console.log("fail");
+ 			});
+ 			
+ 			console.log(profile);
+ 			return profile;
 		};
-		
-		
 		
 		this.canReview = function() {
 			
 			// ensure the profile is not of the viewer
-			if (this.viewer === this.person.prim_user.FBID) {
+			if (this.viewer === this.profile.prim_user.FBID) {
 				return false;
 			}
 			
 			// ensure the profile is friends with the viewer
-			for(var i=0; i<this.person.friends.length; i++) {
+			for(var i=0; i<this.friends.length; i++) {
 				
-				if (this.person.friends[i] === this.viewer) {
+				if (this.friends[i].FBID === this.viewer) {
 					
 					// ensure the viewer has not already written a review for this profile
-					for (var j=0; j<this.person.reviews.length; j++) {
+					for (var j=0; j<this.profile.reviews.length; j++) {
 						
-						if (this.person.reviews[j].reviewer === this.viewer) {
+						if (this.profile.reviews[j].AFBID === this.viewer) {
 							return false;
 						}
 					}
@@ -67,10 +65,29 @@
 		
 		this.review = {};
 		
-		this.addReview = function(product) {
-			products.review.push(this.review);
+		this.addReview = function(profile) {
+			profile.reviews.push(this.review);
 			this.review = {};
 		};
 	});
+	
+	var dummyData = {
+		prim_user: {
+			FBID: '902810754',
+			CRID: '902810754',
+			FNAME: 'Jason',
+			LNAME: 'Libbey',
+			EMAIL: 'jelgt2011@gmail.com'
+		},
+		reviews: [
+			{
+				AFBID: '902810754',
+				REVIEW: 'AYE BB WANT SUM FUK',
+				UPVOTES: 2,
+				DOWNVOTES: 4,
+				RATING: 5
+			}
+		]
+	};
 	
 })();
