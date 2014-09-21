@@ -1,10 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="creepl">
-	<!--
-	Modified from the Debian original for Ubuntu
-	Last updated: 2014-03-19
-	See: https://launchpad.net/bugs/1288690
-	-->
+<!DOCTYPE html>
+<html ng-app='creepl'>
+
 	<head>
 		<title>Creepl Profile</title>
 
@@ -31,8 +27,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 		
-		<!--script type="text/javascript" src="js/jquery.nav.js"></script-->
-
+		<script src="app/search.js"></script>
 		<script>
 			jQuery(function(){
 				jQuery('#camera_wrap_1').camera({
@@ -48,11 +43,9 @@
 				});
 			});
 		</script>
-
 	</head>
 	<body>
 		<script src="app/app.js"></script>
-		
 		<!--home start-->
 		<div id="home">
 			<div class="headerLine">
@@ -92,116 +85,100 @@
 			</div>
 		</div>
 		
-		
 		<!--contact start-->
 
 		<div id="contact">
 			
 			<div class="container" ng-controller="ProfileController as profileCtrl">
+				<!--{{profileCtrl.loadProfile(profileCtrl.profile.viewer)}}-->
 				<div>
-					<h1>{{profileCtrl.person.nameFirst}}</h1><br>
-					<h1>{{profileCtrl.person.nameLast}}</h1><br>
-					<h1>{{profileCtrl.person.email}}</h1>
-					<div id="profile reviews">
-						<div ng-repeat="review in profileCtrl.person.reviews">
-							<p>{{review.reviewer}}</p><br>
-							<p>{{review.rating}}</p><br>
-							<p>{{review.body}}</p><br>
-							<p>{{review.upvotes}}</p><br>
-							<p>{{review.downvotes}}</p><br>
-							<p>{{review.funny}}</p><br>
-						</div>
-						<form ng-controller="ReviewController as reviewCtrl" 
-						ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.person)" >
-							<blockquote>
-								<b>Stars: {{review.stars}}</b><br>
-								{{review.body}}<br>
-								<cite>by: {{review.author}}</cite>
-							</blockquote>
-							
-							<select ng-model="review.starts">
-								<option value="1">1 star</option>
-								<option value="2">2 star</option>
-								<option value="3">3 star</option>
-								<option value="4">4 star</option>
-								<option value="5">5 star</option>
-							</select>
-							
-							<textarea ng-model="review.body">
-								
-							</textarea>
-							
-							<label ng-model="review.author">by:</label>
-							
-							<input type="submit" value="Submit" />
-						</form>
+					<div >
+						
+						
+						
+						<p>{{profileCtrl.profile.prim_user.FNAME}}</p><br>
+						<p>{{profileCtrl.profile.prim_user.LNAME}}</p><br>
+						<p>{{profileCtrl.profile.prim_user.EMAIL}}</p>
 					</div>
-				</div>
-				<div id="friends">
 					
+					<!-- Reviews -->
+					<div style="position: relative;">
+		
+						<div class="container">
+							<div class="row about" ng-repeat="review in profileCtrl.profile.reviews">
+								<p>{{10 + 6}}</p>
+								<script>
+									console.log(profileCtrl);
+									var reviewer = profileCtrl.loadProfile(review);
+									console.log(reviewer);
+								</script>
+								
+								<div class="col-md-6">
+									<div class="about2" ng-switch on="review.RATING">
+									<img class="pic2Ab" src="images/picAbout/aboutP2.png">
+										<img src="images/1star.png" ng-switch-when="1">
+										<img src="images/2star.png" ng-switch-when="2">
+										<img src="images/3star.png" ng-switch-when="3">
+										<img src="images/4star.png" ng-switch-when="4">
+										<img src="images/5star.png" ng-switch-when="5">
+										<h3>{{review.FNAME}}, {{review.LNAME}}</h3>
+										<p>{{review.REVIEW}}</p>
+										<div>
+											<p>votes</p>
+										</div>
+										
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					
+					<!-- Add Review -->
+					<form ng-controller="ReviewController as reviewCtrl" 
+							ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.profile)" >
+						<div class="container">
+							<div class="row about">
+								<div class="col-md-6">
+									
+								</div>
+							</div>
+							
+						</div>
+						
+						<div>
+							<fieldset class="rating">
+	    						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+	    						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+	    						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+	    						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+	    						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+							</fieldset>
+						</div>
+						
+						<textarea>
+							
+						</textarea>
+						
+						<label>by:</label>
+						
+						<input type="submit" value="Submit" />
+						</div>
+					</form>
 				</div>
 			</div>
-			
 		</div>
 
 		<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.slicknav.js"></script>
-		<script>
-$(document).ready(function(){
-$(".bhide").click(function(){
-$(".hideObj").slideDown();
-$(this).hide(); //.attr()
-return false;
-});
-$(".bhide2").click(function(){
-$(".container.hideObj2").slideDown();
-$(this).hide(); // .attr()
-return false;
-});
-
-$('.heart').mouseover(function(){
-$(this).find('i').removeClass('fa-heart-o').addClass('fa-heart');
-}).mouseout(function(){
-$(this).find('i').removeClass('fa-heart').addClass('fa-heart-o');
-});
-
-
-});
-		</script>
-		
-
-		<script type="text/javascript">
-$(document).ready(function(){
-
-var $menu = $("#menuF");
-
-$(window).scroll(function(){
-if ( $(this).scrollTop() > 100 && $menu.hasClass("default") ){
-$menu.fadeOut('fast',function(){
-$(this).removeClass("default")
-.addClass("fixed transbg")
-.fadeIn('fast');
-});
-} else if($(this).scrollTop() <= 100 && $menu.hasClass("fixed")) {
-$menu.fadeOut('fast',function(){
-$(this).removeClass("fixed transbg")
-.addClass("default")
-.fadeIn('fast');
-});
-}
-});
-});
-//jQuery
-		</script>
-		
-		<script type="text/javascript" charset="utf-8">
-
-jQuery(document).ready(function(){
-jQuery(".pretty a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'light_square',slideshow:3000, autoplay_slideshow: true, social_tools: ''});
-
-});
-		</script>
 	</body>
 </html>
 

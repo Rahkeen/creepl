@@ -1,26 +1,54 @@
 (function() {
 	var app = angular.module('creepl', []);
 	
+	var url = '/get_user_reviews_ajax.php';
+		
 	app.controller('ProfileController', function() {
-		this.viewer = '902859678';
-		this.person = profile;
+		
+		// get from facebook login
+		this.viewer = '000X11';
+		
+		this.profile = dummyData;
+		
+		this.friends = ['nobody'];
+		
+		// initialize to viewer
+		this.loadProfile = function(FBID) {
+			
+			var profile;
+			
+			var promise = $.get(url, {
+    			UFID: FBID
+ 			});
+ 			
+ 			profile = promise.success(function(data) {
+ 				return data;
+ 			});
+ 			
+ 			promise.fail(function(data) {
+ 				console.log("fail");
+ 			});
+ 			
+ 			console.log(profile);
+ 			return profile;
+		};
 		
 		this.canReview = function() {
 			
 			// ensure the profile is not of the viewer
-			if (this.viewer === this.person.FacebookID) {
+			if (this.viewer === this.profile.prim_user.FBID) {
 				return false;
 			}
 			
 			// ensure the profile is friends with the viewer
-			for(var i=0; i<this.person.friends.length; i++) {
+			for(var i=0; i<this.friends.length; i++) {
 				
-				if (this.person.friends[i] === this.viewer) {
+				if (this.friends[i].FBID === this.viewer) {
 					
 					// ensure the viewer has not already written a review for this profile
-					for (var j=0; j<this.person.reviews.length; j++) {
+					for (var j=0; j<this.profile.reviews.length; j++) {
 						
-						if (this.person.reviews[j].reviewer === this.viewer) {
+						if (this.profile.reviews[j].AFBID === this.viewer) {
 							return false;
 						}
 					}
@@ -33,32 +61,33 @@
 		};
 	});
 	
-	var profile = {
-		FacebookID: '000000000',
-		nameFirst: 'Jason',
-		nameLast: 'Libbey',
-		email: 'jlibbey3@gatech.edu',
-		friends: ['902810754', '902825262', '902859678'],
-		reviews: [
-			{
-				reviewer: '902825262',
-				rating: '1 to 5 stars',
-				body: 'omg becky look at her butt',
-				upvotes: 'integer',
-				downvotes: 'integer',
-				funny: 'not really sure yet'
-			},
-		],
-	};
-	
-	app.controller("ReviewController", function() {
+	app.controller('ReviewController', function() {
 		
 		this.review = {};
 		
-		this.addReview = function(product) {
-			products.review.push(this.review);
+		this.addReview = function(profile) {
+			profile.reviews.push(this.review);
 			this.review = {};
 		};
 	});
+	
+	var dummyData = {
+		prim_user: {
+			FBID: '902810754',
+			CRID: '902810754',
+			FNAME: 'Jason',
+			LNAME: 'Libbey',
+			EMAIL: 'jelgt2011@gmail.com'
+		},
+		reviews: [
+			{
+				AFBID: '902810754',
+				REVIEW: 'AYE BB WANT SUM FUK',
+				UPVOTES: 2,
+				DOWNVOTES: 4,
+				RATING: 5
+			}
+		]
+	};
 	
 })();
