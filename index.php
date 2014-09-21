@@ -100,7 +100,7 @@
 			FB.api('/me/picture?type=normal', function(response) {
 				var pic = response.data.url;
 				$("input[name='photo']").val(pic);
-			})
+			});
 
 			console.log($("input[name='name']").val());
 		}
