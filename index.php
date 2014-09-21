@@ -102,6 +102,8 @@
 				var pic = response.data.url;
 				$("input[name='photo']").val(pic);
 			})
+
+			console.log($("input[name='name']").val());
 		}
 
 		// function getPhoto() {
@@ -136,7 +138,7 @@
 				Pic: <input type="text" name="photo" value="">
 			</div>
 			<input type="Submit">
-		</form>
+		</form> 
 	</div>
     <div id="home">
     	<div class="headerLine">
