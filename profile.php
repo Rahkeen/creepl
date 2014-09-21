@@ -106,19 +106,20 @@
 							<div class="row about" ng-repeat="review in profileCtrl.profile.reviews">
 								<div class="col-md-6">
 									<div class="about2" ng-switch on="review.rating">
-									<img class="pic2Ab" src="images/picAbout/aboutP2.png">
-										<img src="images/1star.png" ng-switch-when="1">
-										<img src="images/2star.png" ng-switch-when="2">
-										<img src="images/3star.png" ng-switch-when="3">
-										<img src="images/4star.png" ng-switch-when="4">
-										<img src="images/5star.png" ng-switch-when="5">
+									<img class="pic2Ab" ng-bind="review.pic">
+										<img src="images/icons/1star.png" ng-switch-when="1">
+										<img src="images/icons/2star.png" ng-switch-when="2">
+										<img src="images/icons/3star.png" ng-switch-when="3">
+										<img src="images/icons/4star.png" ng-switch-when="4">
+										<img src="images/icons/5star.png" ng-switch-when="5">
 										<h3>{{review.fname + ' ' + review.lname}}</h3>
 										<p>{{review.review}}</p>
 										<div>
-											<p>votes</p>
+											<img src="images/icons/arrowDown.png">
+											<img src="images/icons/arrowUp.png">
 										</div>
 										
-										</div>
+									</div>
 								</div>
 							</div>
 						</div>
