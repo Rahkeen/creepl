@@ -135,7 +135,11 @@
 				<div class="col-md-8">
 					<div class="navmenu"style="text-align: center;">
 						<ul id="menu">
-							<input  id="searchPattern" type="search" placeholder="Find People"/><i class="glyphicon glyphicon-search" style="font-size: 13px; color:#a5a5a5;" id="iS"></i>
+                            <form action="search_results.php" method="get">
+							<input  id="searchPattern" name='query' type="search" placeholder="Find People"/>
+                            <input type="submit">
+                            </form>
+                            <i class="glyphicon glyphicon-search" style="font-size: 13px; color:#a5a5a5;" id="iS"></i>
                                 
 						</ul>
 					</div>

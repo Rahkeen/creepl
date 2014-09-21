@@ -27,6 +27,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 		
+		<script src="app/app.js"></script>
+		
 		<script src="app/search.js"></script>
 		<script>
 			jQuery(function(){
@@ -44,8 +46,13 @@
 			});
 		</script>
 	</head>
-	<body>
-		<script src="app/app.js"></script>
+	<body ng-controller="ProfileController as profileCtrl">
+		<script>
+			var LOGGEDIN = '<?php $_GET[]; ?>';
+		</script>
+		
+		
+		<button ng-click="profileCtrl.switchUser('000X11')"></button>
 		<!--home start-->
 		<div id="home">
 			<div class="headerLine">
@@ -85,11 +92,11 @@
 			</div>
 		</div>
 		
-		<!--contact start-->
+		<!--profile start-->
 
 		<div id="contact">
 			
-			<div class="container" ng-controller="ProfileController as profileCtrl">
+			<div class="container">
 				<div>
 					<div >
 						
@@ -97,7 +104,7 @@
 						
 						<p>{{profileCtrl.profile.prim_user.fname}}</p><br>
 						<p>{{profileCtrl.profile.prim_user.lname}}</p><br>
-						<p>{{profileCtrl.profile.prim_user.email}}</p>
+						<p>{{profileCtrl.profile.prim_user.rating}}</p>
 					</div>
 					
 					<!-- Reviews -->
@@ -114,9 +121,9 @@
 										<img src="images/icons/5star.png" ng-switch-when="5">
 										<h3>{{review.fname + ' ' + review.lname}}</h3>
 										<p>{{review.review}}</p>
-										<div>
-											<img src="images/icons/arrowDown.png">
-											<img src="images/icons/arrowUp.png">
+										<div ng-show="">
+											<a class="vote-arrow-down"><img class="vote-arrow-down" src="images/icons/arrowDown.png"></a>
+											<a class="vote=arrow-up"><img class="vote-arrow-up" src="images/icons/arrowUp.png"></a>
 										</div>
 										
 									</div>
@@ -134,41 +141,39 @@
 					<br>
 					
 					<!-- Add Review -->
-					<form ng-controller="ReviewController as reviewCtrl" 
-							ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.profile, review)" >
-						<div class="container">
-							<div class="row about">
-								<div class="col-md-6">
+					<div class="container" ng-show="profileCtrl.canReview()">
+						<div class="row">
+							<div class="col-md-9 col-xs-12 forma">
+								<form ng-controller="ReviewController as reviewCtrl" 
+										ng-submit="reviewCtrl.addReview(profileCtrl.profile, review)" >
 									
-								</div>
+									<div>
+										<fieldset class="rating" ng-model="review.rating">
+				    						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+				    						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+				    						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+				    						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+				    						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+										</fieldset>
+									</div>
+									
+									<textarea class="col-md-12 col-xs-12 Message" placeholder="Message *" ng-model="review.review"></textarea>
+									
+									<div class="cBtn col-xs-12">
+										<ul>
+											<li class="send"><a href="#" onclick=""><i class="fa fa-share"></i>Submit</a></li>
+										</ul>
+										
+									</div>
+								</form>
 							</div>
-							
+								
 						</div>
-						
-						<div>
-							<fieldset class="rating" ng-model="review.rating">
-	    						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-	    						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-	    						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-	    						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-	    						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-							</fieldset>
-						</div>
-						
-						<textarea ng-model="review.review">
-							
-						</textarea>
-						
-						<input type="submit" value="Submit" />
-						</div>
-					</form>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-
-		<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.slicknav.js"></script>
 	</body>
 </html>
 

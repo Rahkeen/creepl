@@ -2122,3 +2122,11 @@ rating > label:active {
     top:2px;
     left:2px;
 }
+
+.vote-arrow-down a:focus img {
+	background: '../images/icons/arrowDownSelected.png';
+}
+
+.vote-arrow-up a:focus img {
+	image: '../images/icons/arrowUpSelected.png';
+}

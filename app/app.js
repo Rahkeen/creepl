@@ -21,6 +21,8 @@
 		// initialize to viewer
 		function loadProfile() {
 			
+			var temp = "<?php echo 'hello'; ?>";
+			
 			var profile = loadUser(this.viewer);
  			
  			for (var i=0; i<profile.reviews.length; i++) {
@@ -44,7 +46,16 @@
 			});
 			
 			return profile;
-		}
+		};
+		
+		
+		
+		this.switchUser = function(fbid) {
+			console.log('hi');
+			//this.profile = loadUser(fbid);
+				
+			this.profile = dummyProfile2;
+		};
 		
 		this.canReview = function() {
 			
@@ -77,6 +88,25 @@
 	
 	app.controller('ReviewController', function() {
 		
+		this.addVote = function(profile, viewer, review, vote) {
+			var promise = $.post('post_review_vote', {
+				afbid: review.afbid,
+				ufbid: profile.prim_user.fbid,
+				vfbid: viewer.fbid,
+				vote: vote,
+				check: false
+			});
+		};
+		
+		this.isVoteable = function(profile, viewer, review) {
+			var promise = $.post('post_review_vote', {
+				afbid: review.afbid,
+				ufbid: profile.prim_user.fbid,
+				vfbid: viewer.fbid,
+				check: true
+			});
+		};
+		
 		this.addReview = function(profile, review) {
 			
 			var promise = $.post('post_review', {
@@ -100,8 +130,7 @@
 		prim_user: {
 			fbid: '902810754',
 			fname: 'Jason',
-			lname: 'Libbey',
-			email: 'jelgt2011@gmail.com'
+			lname: 'Libbey'
 		},
 		reviews: [
 			{
@@ -111,6 +140,16 @@
 				downvotes: 4,
 				rating: 5
 			}
+		]
+	};
+	
+	var dummyProfile2 = {
+		prim_user: {
+			fbid: '902810754',
+			fname: 'George',
+			lname: 'Burdell'
+		},
+		reviews: [
 		]
 	};
 	
