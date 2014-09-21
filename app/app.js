@@ -3,7 +3,9 @@
 	
 	var url = '/get_user_reviews_ajax.php';
 		
-	app.controller('ProfileController', function() {
+	app.controller('ProfileController', function($scope) {
+		
+		$scope.controller = this;
 		
 		// get from facebook login
 		this.viewer = '000X11';
@@ -87,6 +89,8 @@
 			
 			return false;
 		};
+		
+		return this;
 	});
 	
 	app.controller('ReviewController', function() {
