@@ -54,9 +54,9 @@
 				photo: '<?php $_GET[photo]; ?>'
 			};
 			console.log(LOGGEDIN.fbid);
+			
 		</script>
 		
-		<button ng-click="profileCtrl.switchProfile('000X11')"></button>
 		<!--home start-->
 		<div id="home">
 			<div class="headerLine">
