@@ -56,6 +56,9 @@
 
 	</head>
 	<body>
+		
+		<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" />
+		
 		<!--home start-->
 
         <script>

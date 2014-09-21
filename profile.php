@@ -32,25 +32,12 @@
 		<script src="app/search.js"></script>
 	</head>
 	<body ng-controller="ProfileController as profileCtrl">
-		<script>
-			var LOGGEDIN = {
-				'name': '<?php echo $_GET['name']; ?>',
-				'fbid': '<?php echo $_GET['fbid']; ?>',
-				'photo': '<?php echo $_GET['photo']; ?>'
-			};
-			console.log('h');
-			console.log(LOGGEDIN.name);
-			console.log(LOGGEDIN.fbid);
-			
-			var controller = angular.element(document.body).scope().profileCtrl;
-			
-		</script>
 		
 		<!--profile start-->
 
-		<div id="contact" ng-mouseenter="profileCtrl.switchProfile(LOGGEDIN)">
+		<div id="contact">
 			
-			<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" onclick="Login()"/>
+			<img src="http://hayageek.com/examples/oauth/facebook/oauth-javascript/LoginWithFacebook.png" ng-click="profileCtrl.Login()"/>
 			
 			<div class="container">
 				<div>

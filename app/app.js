@@ -48,8 +48,8 @@
 			return profile;
 		};
 		
-		
-		function Login() {
+		this.Login = function() {
+			console.log("hi");
 			FB.login(function(response) {
 				if(response.authResponse) {
 					getInfo();
