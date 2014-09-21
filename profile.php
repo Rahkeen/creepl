@@ -27,6 +27,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 		
+		<script src="app/app.js"></script>
+		
 		<script src="app/search.js"></script>
 		<script>
 			jQuery(function(){
@@ -44,8 +46,13 @@
 			});
 		</script>
 	</head>
-	<body>
-		<script src="app/app.js"></script>
+	<body ng-controller="ProfileController as profileCtrl">
+		<script>
+			var LOGGEDIN = '<?php $_GET[]; ?>';
+		</script>
+		
+		
+		<button ng-click="profileCtrl.switchUser('000X11')"></button>
 		<!--home start-->
 		<div id="home">
 			<div class="headerLine">
@@ -89,7 +96,7 @@
 
 		<div id="contact">
 			
-			<div class="container" ng-controller="ProfileController as profileCtrl">
+			<div class="container">
 				<div>
 					<div >
 						
@@ -114,7 +121,7 @@
 										<img src="images/icons/5star.png" ng-switch-when="5">
 										<h3>{{review.fname + ' ' + review.lname}}</h3>
 										<p>{{review.review}}</p>
-										<div>
+										<div ng-show="">
 											<a class="vote-arrow-down"><img class="vote-arrow-down" src="images/icons/arrowDown.png"></a>
 											<a class="vote=arrow-up"><img class="vote-arrow-up" src="images/icons/arrowUp.png"></a>
 										</div>
@@ -167,10 +174,6 @@
 				</div>
 			</div>
 		</div>
-
-		<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.slicknav.js"></script>
 	</body>
 </html>
 
