@@ -53,6 +53,7 @@
 				fbid: '<?php $_GET[fbid]; ?>',
 				photo: '<?php $_GET[photo]; ?>'
 			};
+			console.log(LOGGEDIN.fbid);
 		</script>
 		{{profileCtrl.switchProfile(LOGGEDIN)}}
 		
