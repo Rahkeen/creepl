@@ -79,12 +79,10 @@
 		function getInfo() {
 			console.log('Getting some info for you...');
 			FB.api('/me', function(response) {
-
-				var name = response.name;
-				var id = response.id;
-				console.log($("input")[0]);
-				$("input[name='name']").val(name);
-				$("input[name='fbid']").val(id);
+				
+				this.profile.prim_user.fbid = response.id;
+				this.profile.prim_user.fname = response.name;
+				this.profile.prim_user.photo = response.photo;
 			});
 
 			FB.api('/me/picture?type=normal', function(response) {
