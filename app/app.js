@@ -8,7 +8,7 @@
 		// get from facebook login
 		this.viewer = '000X11';
 		
-		this.profile = dummyProfile;
+		this.profile;
 		
 		this.friends = [
 			{
@@ -51,10 +51,8 @@
 		
 		
 		this.switchProfile = function(fbid) {
-			console.log('hi');
-			//this.profile = loadUser(fbid);
-				
-			this.profile = dummyProfile2;
+			
+			this.profile = loadUser(fbid);
 		};
 		
 		this.canReview = function() {
@@ -125,32 +123,5 @@
 			});
 		};
 	});
-	
-	var dummyProfile = {
-		prim_user: {
-			fbid: '902810754',
-			fname: 'Jason',
-			lname: 'Libbey'
-		},
-		reviews: [
-			{
-				afbid: '902810754',
-				review: 'AYE BB WANT SUM FUK',
-				upvotes: 2,
-				downvotes: 4,
-				rating: 5
-			}
-		]
-	};
-	
-	var dummyProfile2 = {
-		prim_user: {
-			fbid: '902810754',
-			fname: 'George',
-			lname: 'Burdell'
-		},
-		reviews: [
-		]
-	};
 	
 })();
