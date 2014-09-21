@@ -30,21 +30,6 @@
 		<script src="app/app.js"></script>
 		
 		<script src="app/search.js"></script>
-		<script>
-			jQuery(function(){
-				jQuery('#camera_wrap_1').camera({
-					transPeriod: 500,
-					time: 3000,
-					height: '490px',
-					thumbnails: false,
-					pagination: true,
-					playPause: false,
-					loader: false,
-					navigation: false,
-					hover: false
-				});
-			});
-		</script>
 	</head>
 	<body ng-controller="ProfileController as profileCtrl">
 		<script>
@@ -55,49 +40,9 @@
 			};
 			console.log('h');
 			console.log(LOGGEDIN.fbid);
-			switchProfile(LOGGEDIN);
 		</script>
 		
 		{{switchProfile(LOGGEDIN)}}
-		
-		<!--home start-->
-		<div id="home">
-			<div class="headerLine">
-				<div id="menuF" class="default">
-					<div class="container">
-						<div class="row">
-							<div class="logo col-md-4">
-								<div>
-									<a href="#"><img src="images/logo.png"></a>
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="navmenu"style="text-align: center;">
-									<ul id="menu">
-										<li class="active" >
-											<a href="#home">Home</a>
-										</li>
-										<li>
-											<a href="#about">About</a>
-										</li>
-										<li>
-											<a href="#project">Projects</a>
-										</li>
-										<li>
-											<a href="#news">News</a>
-										</li>
-										<li class="last">
-											<a href="#contact">Contact</a>
-										</li>
-										<!--li><a href="#features">Features</a></li-->
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<!--profile start-->
 
