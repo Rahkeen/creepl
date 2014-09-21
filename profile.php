@@ -1,10 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="creepl">
-	<!--
-	Modified from the Debian original for Ubuntu
-	Last updated: 2014-03-19
-	See: https://launchpad.net/bugs/1288690
-	-->
+<!DOCTYPE html>
+<html ng-app="creepl">
+
 	<head>
 		<title>Creepl Profile</title>
 
@@ -101,7 +97,7 @@
 				{{profileCtrl.init()}}
 				<div>
 					<h1>{{profileCtrl.person.prim_user.FNAME}}</h1><br>
-					<h1>{{profileCtrl.person.prim_userLNAME}}</h1><br>
+					<h1>{{profileCtrl.person.prim_user.LNAME}}</h1><br>
 					<h1>{{profileCtrl.person.EMAIL}}</h1>
 					<div id="profile reviews">
 						<div ng-repeat="review in profileCtrl.person.reviews">

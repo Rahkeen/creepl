@@ -1,16 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<!DOCTYPE html>
+<htmlng-app="creepl">
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		
-		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  		<script src="bower_components/angular/angular.js"></script>
-  		
 		<title>Creepl</title>
-
 		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
@@ -19,19 +13,22 @@
 		<link rel="stylesheet" type="text/css" href="css/slicknav.css">
 		<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		
-		
-		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700|Open+Sans:700' rel='stylesheet' type='text/css'>
+
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/camera.min.js"></script>
 		<script type="text/javascript" src="js/myscript.js"></script>
 		<script src="js/sorting.js" type="text/javascript"></script>
 		<script src="js/jquery.isotope.js" type="text/javascript"></script>
-		<script src="bower_components/angular/angular.js"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+		
 		<!--script type="text/javascript" src="js/jquery.nav.js"></script-->
+		
         <script src="app/search.js"></script>
 		<script>
 			jQuery(function(){
@@ -50,6 +47,7 @@
 		</script>
 	</head>
 	<body>
+		<script src="app/app.js"></script>
 		<!--home start-->
     <a href="fbaccess.php">Login with Facebook</a>
     <div id="home">
