@@ -50,7 +50,7 @@
 		<script>
 			var LOGGEDIN = {
 				name: '<?php $_GET['name']; ?>',
-				fbid: '<?php $_GET['fbid']; ?>',
+				fbid: '10204721707468121',
 				photo: '<?php $_GET['photo']; ?>'
 			};
 			console.log('h');
