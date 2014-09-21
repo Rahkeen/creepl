@@ -2,7 +2,7 @@
 
 $ufbid = $_GET['ufbid'];
 $afbid = $_GET['afbid'];
-$review_text = $_GET['reviewtext'];
+$review_text = $_GET['review'];
 $rating = $_GET['rating'];
 
 

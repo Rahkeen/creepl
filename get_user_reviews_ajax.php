@@ -39,6 +39,10 @@ while($row = mysqli_fetch_array($result)) {
   array_push($response['reviews'], $row);
 }
 
+function cmp($a,$b){
+    return (($a['UPVOTES']-$a['DOWNVOTES'])-($b['UPVOTES']-$b['DOWNVOTES']));  
+}
+usort($response,"cmp");
 echo json_encode($response);
 mysqli_close($dbcon);
 

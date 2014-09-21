@@ -8,47 +8,57 @@
 		// get from facebook login
 		this.viewer = '000X11';
 		
-		this.profile = dummyData;
+		this.profile = dummyProfile;
 		
 		this.friends = ['nobody'];
 		
+		this.review;
+		
 		// initialize to viewer
-		this.loadProfile = function(FBID) {
+		this.loadProfile = function() {
 			
-			var profile;
+			var profile = loadUser(this.viewer);
+ 			
+ 			for (var i=0; i<profile.reviews.length; i++) {
+ 				profile.reviews[i] = loadUser(profile.reviews[i].afbid);
+ 			}
+ 			
+		};
+		
+		function loadUser(fbid) {
 			
 			var promise = $.get(url, {
-    			UFID: FBID
- 			});
- 			
- 			profile = promise.success(function(data) {
- 				return data;
- 			});
- 			
- 			promise.fail(function(data) {
- 				console.log("fail");
- 			});
- 			
- 			console.log(profile);
- 			return profile;
-		};
+				ufbid: fbid
+			});
+			
+			var profile = promise.success(function(data) {
+				return data;
+			});
+			
+			promise.fail(function(data) {
+				console.log("fail");
+			});
+			
+			return profile;
+		}
 		
 		this.canReview = function() {
 			
 			// ensure the profile is not of the viewer
-			if (this.viewer === this.profile.prim_user.FBID) {
+			if (this.viewer === this.profile.prim_user.fbid) {
 				return false;
 			}
 			
 			// ensure the profile is friends with the viewer
 			for(var i=0; i<this.friends.length; i++) {
 				
-				if (this.friends[i].FBID === this.viewer) {
+				if (this.friends[i].fbid === this.viewer) {
 					
 					// ensure the viewer has not already written a review for this profile
 					for (var j=0; j<this.profile.reviews.length; j++) {
 						
-						if (this.profile.reviews[j].AFBID === this.viewer) {
+						if (this.profile.reviews[j].afbid === this.viewer) {
+							this.review = this.profile.reviews[j];
 							return false;
 						}
 					}
@@ -63,29 +73,32 @@
 	
 	app.controller('ReviewController', function() {
 		
-		this.review = {};
-		
-		this.addReview = function(profile) {
-			profile.reviews.push(this.review);
-			this.review = {};
+		this.addReview = function(profile, review) {
+			
+			var promise = $.post('post_review', {
+				ufbid: profile.prim_user.fbid,
+				afbid: review.afbid,
+				review: review.review,
+				rating: review.rating
+			});
+			
 		};
 	});
 	
-	var dummyData = {
+	var dummyProfile = {
 		prim_user: {
-			FBID: '902810754',
-			CRID: '902810754',
-			FNAME: 'Jason',
-			LNAME: 'Libbey',
-			EMAIL: 'jelgt2011@gmail.com'
+			fbid: '902810754',
+			fname: 'Jason',
+			lname: 'Libbey',
+			email: 'jelgt2011@gmail.com'
 		},
 		reviews: [
 			{
-				AFBID: '902810754',
-				REVIEW: 'AYE BB WANT SUM FUK',
-				UPVOTES: 2,
-				DOWNVOTES: 4,
-				RATING: 5
+				afbid: '902810754',
+				review: 'AYE BB WANT SUM FUK',
+				upvotes: 2,
+				downvotes: 4,
+				rating: 5
 			}
 		]
 	};

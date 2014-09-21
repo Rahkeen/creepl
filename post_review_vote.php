@@ -3,6 +3,7 @@
 $ufbid = $_GET['ufbid'];
 $afbid = $_GET['afbid'];
 $vote_type = $_GET['vote'];
+$vfbid = $_GET['vfbid'];
 
 
 //Database Init
