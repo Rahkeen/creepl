@@ -1,14 +1,44 @@
 (function() {
 	var app = angular.module('creepl', []);
 	
+	var url = '/get_user_reviews_ajax.php';
+		
 	app.controller('ProfileController', function() {
-		this.viewer = '902859678';
-		this.person = profile;
+		
+		// get from facebook login
+		this.viewer = '000X11';
+		
+		this.profile;
+		
+		this.friends;
+		
+		// initialize to viewer
+		this.init = function() {
+			
+			console.log("test");
+			
+			var promise = $.get(url, {
+    			UFID: this.viewer
+ 			})
+ 			.done(function() {
+ 				console.log("success");
+ 			})
+ 			.fail(function() {
+ 				console.log("fail");
+ 			})
+ 			.always(function() {
+ 				console.log("always");
+ 			});
+ 			//.success(handleSuccess).error(handleFailure);
+ 			
+		};
+		
+		
 		
 		this.canReview = function() {
 			
 			// ensure the profile is not of the viewer
-			if (this.viewer === this.person.FacebookID) {
+			if (this.viewer === this.person.prim_user.FBID) {
 				return false;
 			}
 			
@@ -33,25 +63,7 @@
 		};
 	});
 	
-	var profile = {
-		FacebookID: '000000000',
-		nameFirst: 'Jason',
-		nameLast: 'Libbey',
-		email: 'jlibbey3@gatech.edu',
-		friends: ['902810754', '902825262', '902859678'],
-		reviews: [
-			{
-				reviewer: '902825262',
-				rating: '1 to 5 stars',
-				body: 'omg becky look at her butt',
-				upvotes: 'integer',
-				downvotes: 'integer',
-				funny: 'not really sure yet'
-			},
-		],
-	};
-	
-	app.controller("ReviewController", function() {
+	app.controller('ReviewController', function() {
 		
 		this.review = {};
 		
@@ -60,5 +72,25 @@
 			this.review = {};
 		};
 	});
+	
+	function handleSuccess(response, status) {
+		console.log("success");
+		return( response.data );
+	};
+	
+	function handleFailure(response, status) {
+		console.log("failure");
+		if (
+                        ! angular.isObject( response.data ) ||
+                        ! response.data.message
+                        ) {
+ 
+                        return( $q.reject( "An unknown error occurred." ) );
+ 
+                    }
+ 
+                    // Otherwise, use expected error message.
+                    return( $q.reject( response.data.message ) );
+	};
 	
 })();

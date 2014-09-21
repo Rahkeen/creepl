@@ -98,10 +98,11 @@
 		<div id="contact">
 			
 			<div class="container" ng-controller="ProfileController as profileCtrl">
+				{{profileCtrl.init()}}
 				<div>
-					<h1>{{profileCtrl.person.nameFirst}}</h1><br>
-					<h1>{{profileCtrl.person.nameLast}}</h1><br>
-					<h1>{{profileCtrl.person.email}}</h1>
+					<h1>{{profileCtrl.person.prim_user.FNAME}}</h1><br>
+					<h1>{{profileCtrl.person.prim_userLNAME}}</h1><br>
+					<h1>{{profileCtrl.person.EMAIL}}</h1>
 					<div id="profile reviews">
 						<div ng-repeat="review in profileCtrl.person.reviews">
 							<p>{{review.reviewer}}</p><br>
