@@ -90,39 +90,30 @@
 		<div id="contact">
 			
 			<div class="container" ng-controller="ProfileController as profileCtrl">
-				<!--{{profileCtrl.loadProfile(profileCtrl.profile.viewer)}}-->
 				<div>
 					<div >
 						
 						
 						
-						<p>{{profileCtrl.profile.prim_user.FNAME}}</p><br>
-						<p>{{profileCtrl.profile.prim_user.LNAME}}</p><br>
-						<p>{{profileCtrl.profile.prim_user.EMAIL}}</p>
+						<p>{{profileCtrl.profile.prim_user.fname}}</p><br>
+						<p>{{profileCtrl.profile.prim_user.lname}}</p><br>
+						<p>{{profileCtrl.profile.prim_user.email}}</p>
 					</div>
 					
 					<!-- Reviews -->
 					<div style="position: relative;">
-		
 						<div class="container">
 							<div class="row about" ng-repeat="review in profileCtrl.profile.reviews">
-								<p>{{10 + 6}}</p>
-								<script>
-									console.log(profileCtrl);
-									var reviewer = profileCtrl.loadProfile(review);
-									console.log(reviewer);
-								</script>
-								
 								<div class="col-md-6">
-									<div class="about2" ng-switch on="review.RATING">
+									<div class="about2" ng-switch on="review.rating">
 									<img class="pic2Ab" src="images/picAbout/aboutP2.png">
 										<img src="images/1star.png" ng-switch-when="1">
 										<img src="images/2star.png" ng-switch-when="2">
 										<img src="images/3star.png" ng-switch-when="3">
 										<img src="images/4star.png" ng-switch-when="4">
 										<img src="images/5star.png" ng-switch-when="5">
-										<h3>{{review.FNAME}}, {{review.LNAME}}</h3>
-										<p>{{review.REVIEW}}</p>
+										<h3>{{review.fname + ' ' + review.lname}}</h3>
+										<p>{{review.review}}</p>
 										<div>
 											<p>votes</p>
 										</div>
@@ -143,7 +134,7 @@
 					
 					<!-- Add Review -->
 					<form ng-controller="ReviewController as reviewCtrl" 
-							ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.profile)" >
+							ng-show="profileCtrl.canReview()" ng-submit="reviewCtrl.addReview(profileCtrl.profile, review)" >
 						<div class="container">
 							<div class="row about">
 								<div class="col-md-6">
@@ -154,7 +145,7 @@
 						</div>
 						
 						<div>
-							<fieldset class="rating">
+							<fieldset class="rating" ng-model="review.rating">
 	    						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
 	    						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
 	    						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
@@ -163,11 +154,9 @@
 							</fieldset>
 						</div>
 						
-						<textarea>
+						<textarea ng-model="review.review">
 							
 						</textarea>
-						
-						<label>by:</label>
 						
 						<input type="submit" value="Submit" />
 						</div>
