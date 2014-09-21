@@ -42,6 +42,8 @@
 			console.log(LOGGEDIN.name);
 			console.log(LOGGEDIN.fbid);
 			
+			console.log(angular.element((document).body).controller());
+			
 			var lihtml;
 			function populateList() {
 				lihtml = '<div>{name: "<?php echo $_GET['name']; ?>", fbid: "<?php echo $_GET['fbid']; ?>", photo: "<?php echo $_GET['photo']; ?>"}</div>';
