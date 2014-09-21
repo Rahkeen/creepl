@@ -17,8 +17,8 @@
 	$app_id = '355103704654059';
 	$app_secret = 'd5583237092ef1fb6f5167494fb5cd39';
     $required_scope = 'public_profile, user_photos, user_friends';
-    $site_url = 'http://localhost:8080/creepl/';
-	//$site_url = 'http://ec2-54-68-127-215.us-west-2.compute.amazonaws.com/';
+    //$site_url = 'http://localhost:8080/creepl/';
+	$site_url = 'http://ec2-54-68-127-215.us-west-2.compute.amazonaws.com/';
 
     // creating facebook session instance
 
@@ -49,14 +49,16 @@
     // stores token if session is not null
 
     if(isset($session)) {
+
 	    $_SESSION['token'] = $session->getToken();
         $request = new FacebookRequest($session, 'GET', '/me');
         $response = $request->execute();
         $user_info = $response->getGraphObject(GraphUser::className());
 
         echo 'Welcome ' . $user_info->getName();
+        echo '<a href = ' . $helper->getLogoutUrl($session, $site_url) . '>Logout</a>';
     } else {
-        echo '<a href = ' . $helper->getLoginUrl() . '>Login to Facebook</a>';
+        echo '<a href = ' . $helper->getLoginUrl($required_scope) . '>Login to Facebook</a>';
     }
      
 ?>
